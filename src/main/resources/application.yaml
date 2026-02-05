@@ -1,3 +1,28 @@
 spring:
   application:
     name: workspace
+  datasource:
+    url: jdbc:postgresql://localhost:5432/workspace_db
+    username: workspace
+    password: root-worskapce-123
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      pool-name: CHTHikariPool
+      minimum-idle: 1
+      maximum-pool-size: 10
+      idle-timeout: 300000
+      max-lifetime: 600000
+      connection-timeout: 10000000
+      connection-test-query: SELECT 1
+      leak-detection-threshold: 2000
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 8080
