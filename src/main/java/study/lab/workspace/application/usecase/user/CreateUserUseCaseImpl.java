@@ -2,7 +2,9 @@ package study.lab.workspace.application.usecase.user;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import study.lab.workspace.application.dto.user.request.CreateUserInputDTO;
 import study.lab.workspace.domain.entity.User;
 import study.lab.workspace.domain.enums.UserRole;
@@ -15,7 +17,9 @@ import study.lab.workspace.domain.usecase.user.CreateUserUseCase;
 public class CreateUserUseCaseImpl implements CreateUserUseCase {
     private final ExistsUserByEmailRepository existsUserByEmailRepository;
     private final CreateUserRepository createUserRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Transactional
     public void execute(CreateUserInputDTO input) {
         this.validateUniqueEmail(input.email());
 
@@ -28,7 +32,7 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
         return new User()
                 .withName(input.name())
                 .withEmail(input.email())
-                .withPassword(input.password()) // todo - bcrypt that password
+                .withPassword(bCryptPasswordEncoder.encode(input.password()))
                 .withRole(UserRole.GUEST);
     }
 

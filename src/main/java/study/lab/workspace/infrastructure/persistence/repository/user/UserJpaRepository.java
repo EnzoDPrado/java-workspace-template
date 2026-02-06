@@ -7,10 +7,8 @@ import study.lab.workspace.domain.entity.User;
 
 import java.util.UUID;
 
-public interface UserRepository extends JpaRepository<User, UUID> {
+public interface UserJpaRepository extends JpaRepository<User, UUID> {
 
-    @Query("""
-            SELECT 1 from users u where u.email = :email
-            """)
+    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM users u WHERE u.email = :email")
     boolean existsByEmail(@Param("email") String email);
 }

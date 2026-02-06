@@ -9,7 +9,7 @@ import study.lab.workspace.domain.repository.user.ExistsUserByEmailRepository;
 @Repository
 @RequiredArgsConstructor
 public class UserRepositoryImpl implements ExistsUserByEmailRepository, CreateUserRepository {
-    private final UserRepository userRepository;
+    private final UserJpaRepository userRepository;
 
     public boolean existsByEmail(String email) {
         return this.userRepository.existsByEmail(email);
