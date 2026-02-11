@@ -33,7 +33,7 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
                 .withName(input.name())
                 .withEmail(input.email())
                 .withPassword(bCryptPasswordEncoder.encode(input.password()))
-                .withRole(UserRole.GUEST);
+                .withRole(UserRole.USER);
     }
 
     private void validateUniqueEmail(String email) {

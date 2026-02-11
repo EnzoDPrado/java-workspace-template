@@ -1,7 +1,6 @@
 package study.lab.workspace.domain.enums;
 
 public enum UserRole {
-    GUEST,
+    USER,
     ADMIN,
-    WAITER
 }
