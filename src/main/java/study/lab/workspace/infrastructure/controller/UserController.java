@@ -1,6 +1,7 @@
 package study.lab.workspace.infrastructure.controller;
 
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class UserController {
     private final CreateUserUseCase createUserUseCase;
 
     @PostMapping
-    public ResponseEntity createUser(@RequestBody CreateUserInputDTO input) {
+    public ResponseEntity createUser(@RequestBody @Valid CreateUserInputDTO input) {
         this.createUserUseCase.execute(input);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
