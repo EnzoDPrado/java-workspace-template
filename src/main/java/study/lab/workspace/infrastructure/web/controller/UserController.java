@@ -1,4 +1,4 @@
-package study.lab.workspace.infrastructure.controller;
+package study.lab.workspace.infrastructure.web.controller;
 
 
 import jakarta.validation.Valid;
